@@ -8,4 +8,12 @@ public interface VolunteerService {
 
 	List<Volunteer> listAllVolunteers();
 
+	Volunteer GetVolunteer(int id);
+
+	Volunteer addVolunteer(Volunteer volunteer);
+
+	boolean removeVolunteer(int id);
+
+	Volunteer updateVolunteer(int id, Volunteer volunteer);
+
 }
