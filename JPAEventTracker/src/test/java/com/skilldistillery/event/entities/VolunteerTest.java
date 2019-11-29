@@ -21,7 +21,7 @@ class VolunteerTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("XtremePU");
+		emf = Persistence.createEntityManagerFactory("EventTracker");
 	}
 
 	@AfterAll
