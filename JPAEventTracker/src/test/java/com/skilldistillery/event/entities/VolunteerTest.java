@@ -13,6 +13,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.eventtracker.entities.Volunteer;
+
 class VolunteerTest {
 
 	private static EntityManagerFactory emf;

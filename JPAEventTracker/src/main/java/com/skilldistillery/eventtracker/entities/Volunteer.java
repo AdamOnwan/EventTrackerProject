@@ -1,4 +1,4 @@
-package com.skilldistillery.event.entities;
+package com.skilldistillery.eventtracker.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

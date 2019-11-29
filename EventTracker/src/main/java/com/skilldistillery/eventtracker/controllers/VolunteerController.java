@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.event.entities.Volunteer;
+import com.skilldistillery.eventtracker.entities.Volunteer;
 import com.skilldistillery.eventtracker.services.VolunteerService;
 
 @RestController
@@ -18,7 +18,7 @@ public class VolunteerController {
 	private VolunteerService svc;
 	
 	@GetMapping("volunteers")
-	public List<Volunteer> allFilms() {
+	public List<Volunteer> allVolunteers() {
 		return svc.listAllVolunteers();
 	}
 
