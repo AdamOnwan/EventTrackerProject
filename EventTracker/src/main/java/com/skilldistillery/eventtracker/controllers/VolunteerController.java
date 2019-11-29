@@ -17,7 +17,7 @@ public class VolunteerController {
 	@Autowired
 	private VolunteerService svc;
 	
-	@GetMapping("films")
+	@GetMapping("volunteers")
 	public List<Volunteer> allFilms() {
 		return svc.listAllVolunteers();
 	}
