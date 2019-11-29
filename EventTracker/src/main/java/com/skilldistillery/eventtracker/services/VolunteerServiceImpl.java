@@ -40,9 +40,9 @@ public class VolunteerServiceImpl implements VolunteerService {
 	public Volunteer updateVolunteer(int id, Volunteer volunteer) {
 		Optional<Volunteer> opt = repo.findById(id);
 		Volunteer updateVolunteer = opt.get();
-		if (opt.isPresent()) {
-			volunteer = opt.get();
-		}
+//		if (opt.isPresent()) {
+//			volunteer = opt.get();
+//		}
 		updateVolunteer.setFname(volunteer.getFname());
 		updateVolunteer.setLname(volunteer.getLname());
 		updateVolunteer.setPhone(volunteer.getPhone());
