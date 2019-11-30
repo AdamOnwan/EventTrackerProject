@@ -9,8 +9,7 @@ Built EventTrackerProject based on Volunteers to help keep track of volunteers s
 5. Do a gradle refresh on the Spring and JPA projects
 6. Write Postman CRUD tests to see that its conducting CRUD operations in the backend
 ### Implementation
-- localhost
- - http://localhost:8090/
+- localhost: http://localhost:8090/
 ### Technologies used
 * `SQL & MySQL Workbench`
  - For Database
