@@ -1,28 +1,20 @@
 # EventTrackerProject
 ### Overview
-To give hosts opportunity to take in pet owners pets and take care of them while the pet owners are away, usually for a profit. Also vice versa, give pet owners convenience of searching for reputable pet hosts or other services for their pets.
+Built EventTrackerProject based on Volunteers to help keep track of volunteers skills and when their availability.
 ### How to use
-1. User starts on landing page.
-2. User can search or register/login
-3.  If register/login
--  User registers as a client user or service user
--  User logs in
-4. After register/login
- - Client user fills out information such as the pet they have
- - Service user fills out information  such as availability, services and type of stay for pet.
- - User lands onto profile page and able to perform CRUD on profile
-5. Client user conducts search for services for their pet
- - *Note* Only Denver CO has hardcoded dummy information on pet owners/hosts in the database so searching by city and state other than Denver CO may not show any information
-6. User picks a service they want to have done to their pet while in the search menu by clicking on reserve button, which only shows when a user is logged in and has a pet
-7. User picks dates to reserve for the service and receives a confirmation message.
-8. User can go into profile and check reservation history and give the host a review and rating, and the host can do the same for the pet they serviced.
+1. Download the mySQL Workbench, JPA Spring REST, MAMP, and Postman
+2. Import and download the files on this Github project
+3. In mySql Workbench, reverse engineer the sql file if you want to see tables
+4. Change the MAMP port to whatever is available to you in Spring project application properties, currently set at 8090
+5. Do a gradle refresh on the Spring and JPA projects
+6. Write Postman CRUD tests to see that its conducting CRUD operations in the backend
 ### Implementation
-- Website
- - http://18.216.143.93:8090/EventTrackerProject
+- localhost
+ - http://localhost:8090/
 ### Technologies used
 * `SQL & MySQL Workbench`
  - For Database
-* `Spring Tool Suite, & Spring Boot`
+* `Spring Tool Suite, Spring Boot, & Spring REST`
  -  For development
 * `JPA`
  - For communication from development to web
@@ -30,11 +22,10 @@ To give hosts opportunity to take in pet owners pets and take care of them while
  - For development coordination
 * `Gradle`
  - Used for dependency management
-### Why I built PET BnB
-- We want to help pet owners find a place for their pets while they are away and allow hosts or people that can provide pet services an opportunity to build their reputation and give service to others.
-### Methodologies used to build the application
--
+* `MAMP`
+- Provides the localhost to run Postman tests on
+### Why I built EventTrackerProject for Volunteers
+- I have been learning Salesforce NPSP and wanted to make it similar to how the volunteers 4 salesforce tracks volunteer data, and maybe link this app to the Salesforce NPSP.
 ### Lessons Learned
-1.
-### Stretch Goals
-1.
+1. I spent a lot of time trying to figure out why I'm getting an error about UnsatisfiedDependencyException:, BeanCreationException:, java.lang.IllegalArgumentException: Not a managed type:, was very frustrating and had me triple checking all of my gradle, application properties, and persistence.xml, what the solution came out to be was that my package naming convention was different than in my spring starter app. So I learned that package naming convention must match or else projects will not sync together properly.
+2. More familiar with reading error message and console because of looking at error message for such a long time.
