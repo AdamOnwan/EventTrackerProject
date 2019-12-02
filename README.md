@@ -10,6 +10,7 @@ Built EventTrackerProject based on Volunteers to help keep track of volunteers s
 6. Write Postman CRUD tests to see that its conducting CRUD operations in the backend
 ### Implementation
 - localhost: http://localhost:8090/
+- aws: http://3.132.252.98:8080/EventTracker/
 ### Expected Routes
 
 | Return Type | Route                 | Functionality                  |
