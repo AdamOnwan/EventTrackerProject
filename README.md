@@ -15,9 +15,9 @@ Built EventTrackerProject based on Volunteers to help keep track of volunteers s
 | Return Type | Route                 | Functionality                  |
 |-------------|-----------------------|--------------------------------|
 | `List<Volunteer>`  |`GET api/volunteers`        | Gets all volunteers                 |
-| `Post`        |`GET api/volunteers/{id}`   | Gets one volunteer by id            |
-| `Post`        |`POST api/volunteers`       | Creates a new volunteer             |
-| `Post`        |`PUT api/volunteers/{id}`   | Replaces an existing volunteer by id|
+| `Volunteer`        |`GET api/volunteers/{id}`   | Gets one volunteer by id            |
+| `Volunteer`        |`POST api/volunteers`       | Creates a new volunteer             |
+| `Volunteer`        |`PUT api/volunteers/{id}`   | Replaces an existing volunteer by id|
 | `Boolean`     |`DELETE api/volunteers/{id}`| Deletes an existing volunteer by id |
 ### Technologies used
 * `SQL & MySQL Workbench`
