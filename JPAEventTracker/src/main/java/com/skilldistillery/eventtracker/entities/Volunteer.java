@@ -1,10 +1,16 @@
 package com.skilldistillery.eventtracker.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Volunteer {
@@ -21,6 +27,9 @@ public class Volunteer {
 	private String status;
 	private String skills;
 	private String availability;
+	@JsonIgnore
+	@ManyToMany(mappedBy = "volunteers", fetch = FetchType.LAZY)
+	private List<VolunteerShift> volunteerShifts;
 	public int getId() {
 		return id;
 	}
@@ -69,6 +78,12 @@ public class Volunteer {
 	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
+	public List<VolunteerShift> getVolunteerShifts() {
+		return volunteerShifts;
+	}
+	public void setVolunteerShifts(List<VolunteerShift> volunteerShifts) {
+		this.volunteerShifts = volunteerShifts;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,6 +96,7 @@ public class Volunteer {
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((skills == null) ? 0 : skills.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((volunteerShifts == null) ? 0 : volunteerShifts.hashCode());
 		return result;
 	}
 	@Override
@@ -129,10 +145,15 @@ public class Volunteer {
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
+		if (volunteerShifts == null) {
+			if (other.volunteerShifts != null)
+				return false;
+		} else if (!volunteerShifts.equals(other.volunteerShifts))
+			return false;
 		return true;
 	}
 	public Volunteer(int id, String fname, String lname, String phone, String email, String status, String skills,
-			String availability) {
+			String availability, List<VolunteerShift> volunteerShifts) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -142,6 +163,7 @@ public class Volunteer {
 		this.status = status;
 		this.skills = skills;
 		this.availability = availability;
+		this.volunteerShifts = volunteerShifts;
 	}
 	public Volunteer() {
 		super();
@@ -165,9 +187,10 @@ public class Volunteer {
 		builder.append(skills);
 		builder.append(", availability=");
 		builder.append(availability);
+		builder.append(", volunteerShifts=");
+		builder.append(volunteerShifts);
 		builder.append("]");
 		return builder.toString();
 	}
-	
 	
 }

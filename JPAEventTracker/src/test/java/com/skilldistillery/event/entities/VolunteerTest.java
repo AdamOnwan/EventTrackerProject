@@ -48,5 +48,4 @@ class VolunteerTest {
 		assertNotNull(volunteer);
 		assertEquals("Adam", volunteer.getFname());
 	}
-
 }

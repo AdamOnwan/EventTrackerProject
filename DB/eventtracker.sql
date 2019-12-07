@@ -16,6 +16,24 @@ CREATE SCHEMA IF NOT EXISTS `eventdb` DEFAULT CHARACTER SET utf8 ;
 USE `eventdb` ;
 
 -- -----------------------------------------------------
+-- Table `Volunteer`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Volunteer` ;
+
+CREATE TABLE IF NOT EXISTS `Volunteer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(100) NOT NULL,
+  `last_name` VARCHAR(100) NOT NULL,
+  `phone` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NULL,
+  `status` VARCHAR(100) NULL,
+  `skills` VARCHAR(100) NULL,
+  `availability` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `volunteer_shift`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `volunteer_shift` ;
@@ -31,24 +49,23 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Volunteer`
+-- Table `Volunteer_has_volunteer_shift`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Volunteer` ;
+DROP TABLE IF EXISTS `Volunteer_has_volunteer_shift` ;
 
-CREATE TABLE IF NOT EXISTS `Volunteer` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(100) NOT NULL,
-  `last_name` VARCHAR(100) NOT NULL,
-  `phone` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(100) NULL,
-  `status` VARCHAR(100) NULL,
-  `skills` VARCHAR(100) NULL,
-  `availability` VARCHAR(100) NULL,
-  `volunteer shift_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `volunteer shift_id`),
-  INDEX `fk_Volunteer_volunteer shift_idx` (`volunteer shift_id` ASC),
-  CONSTRAINT `fk_Volunteer_volunteer shift`
-    FOREIGN KEY (`volunteer shift_id`)
+CREATE TABLE IF NOT EXISTS `Volunteer_has_volunteer_shift` (
+  `Volunteer_id` INT NOT NULL,
+  `volunteer_shift_id` INT NOT NULL,
+  PRIMARY KEY (`Volunteer_id`, `volunteer_shift_id`),
+  INDEX `fk_Volunteer_has_volunteer_shift_volunteer_shift1_idx` (`volunteer_shift_id` ASC),
+  INDEX `fk_Volunteer_has_volunteer_shift_Volunteer_idx` (`Volunteer_id` ASC),
+  CONSTRAINT `fk_Volunteer_has_volunteer_shift_Volunteer`
+    FOREIGN KEY (`Volunteer_id`)
+    REFERENCES `Volunteer` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Volunteer_has_volunteer_shift_volunteer_shift1`
+    FOREIGN KEY (`volunteer_shift_id`)
     REFERENCES `volunteer_shift` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -66,6 +83,24 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `Volunteer`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `eventdb`;
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (1, 'Adam', 'Onwan', '(701) 111-1111', 'adamonwan@volunteer.com', 'active', 'Computer Usage', 'Weekly');
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (2, 'Ryan', 'Seacrest', '(619) 111-1111', 'ryanseacrest@volunteer.com', 'inactive', 'Event Planning', NULL);
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (3, 'Bill', 'Gates', '(206) 111-1111', 'billgates@volunteer.com', 'active', 'Computer Usage', 'Afternoon');
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (4, 'Kim', 'Kardashian', '(424) 111-1111', 'kimkardashian@volunteer.com', 'active', 'Fundraising', 'Weekdays');
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (5, 'Carson', 'Wentz', '(701) 222-2222', 'carsonwentz@volunteer.com', 'active', 'Manual Labor', 'Morning');
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (6, 'Mark', 'Henry', '(409) 111-1111', 'markhenry@volunteer.com', 'active', 'Manual Labor', 'Afternoon');
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (7, 'Gary', 'Vaynerchuk', '(212) 111-1111', 'garyvaynerchuk@volunteer.com', 'active', 'Event Planning', 'Weekends');
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (8, 'Larry', 'Ellison', '(718) 111-1111', 'larryellison@volunteer.com', 'active', 'Computer Usage', 'Afternoon');
+INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`) VALUES (9, 'Brock', 'Lesnar', '(605) 111-1111', 'brocklesnar@volunteer.com', 'active', 'Manual Labor', 'Weekly');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `volunteer_shift`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -75,24 +110,6 @@ INSERT INTO `volunteer_shift` (`id`, `volunteer_job`, `start_datetime`, `duratio
 INSERT INTO `volunteer_shift` (`id`, `volunteer_job`, `start_datetime`, `duration`, `desired_number_of_volunteers`) VALUES (3, 'Event_Planning', '2020-01-19', '8', '2');
 INSERT INTO `volunteer_shift` (`id`, `volunteer_job`, `start_datetime`, `duration`, `desired_number_of_volunteers`) VALUES (4, 'Shoutcasting', '2020-01-20', '8', '2');
 INSERT INTO `volunteer_shift` (`id`, `volunteer_job`, `start_datetime`, `duration`, `desired_number_of_volunteers`) VALUES (5, 'Adopt-A-Highway', '2020-01-20', '2', '2');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `Volunteer`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `eventdb`;
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (1, 'Adam', 'Onwan', '(701) 111-1111', 'adamonwan@volunteer.com', 'active', 'Computer Usage', 'Weekly', 3);
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (2, 'Ryan', 'Seacrest', '(619) 111-1111', 'ryanseacrest@volunteer.com', 'inactive', 'Event Planning', NULL, 1);
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (3, 'Bill', 'Gates', '(206) 111-1111', 'billgates@volunteer.com', 'active', 'Computer Usage', 'Afternoon', 3);
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (4, 'Kim', 'Kardashian', '(424) 111-1111', 'kimkardashian@volunteer.com', 'active', 'Fundraising', 'Weekdays', 1);
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (5, 'Carson', 'Wentz', '(701) 222-2222', 'carsonwentz@volunteer.com', 'active', 'Manual Labor', 'Morning', 1);
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (6, 'Mark', 'Henry', '(409) 111-1111', 'markhenry@volunteer.com', 'active', 'Manual Labor', 'Afternoon', 1);
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (7, 'Gary', 'Vaynerchuk', '(212) 111-1111', 'garyvaynerchuk@volunteer.com', 'active', 'Event Planning', 'Weekends', 1);
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (8, 'Larry', 'Ellison', '(718) 111-1111', 'larryellison@volunteer.com', 'active', 'Computer Usage', 'Afternoon', 3);
-INSERT INTO `Volunteer` (`id`, `first_name`, `last_name`, `phone`, `email`, `status`, `skills`, `availability`, `volunteer shift_id`) VALUES (9, 'Brock', 'Lesnar', '(605) 111-1111', 'brocklesnar@volunteer.com', 'active', 'Manual Labor', 'Weekly', 1);
 
 COMMIT;
 

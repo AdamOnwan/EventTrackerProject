@@ -1,40 +1,48 @@
 package com.skilldistillery.eventtracker.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "volunteer_shift")
 public class VolunteerShift {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="volunteer_job")
+	@Column(name = "volunteer_job")
 	private String volunteerJob;
-	@Column(name="start_datetime")
+	@Column(name = "start_datetime")
 	private Date startDatetime;
 	private String duration;
-	@Column(name="desired_number_of_volunteers")
+	@Column(name = "desired_number_of_volunteers")
 	private String desiredNumVolunteers;
-	
+	@ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JoinTable(name="volunteer_has_volunteer_shift", joinColumns=@JoinColumn(name="volunteer_shift_id"),
+	inverseJoinColumns=@JoinColumn(name="volunteer_id"))
+	private List<Volunteer> volunteers;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getVolJob() {
+	public String getVolunteerJob() {
 		return volunteerJob;
 	}
-	public void setVolJob(String volJob) {
-		this.volunteerJob = volJob;
+	public void setVolunteerJob(String volunteerJob) {
+		this.volunteerJob = volunteerJob;
 	}
 	public Date getStartDatetime() {
 		return startDatetime;
@@ -54,6 +62,12 @@ public class VolunteerShift {
 	public void setDesiredNumVolunteers(String desiredNumVolunteers) {
 		this.desiredNumVolunteers = desiredNumVolunteers;
 	}
+	public List<Volunteer> getVolunteers() {
+		return volunteers;
+	}
+	public void setVolunteers(List<Volunteer> volunteers) {
+		this.volunteers = volunteers;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -63,6 +77,7 @@ public class VolunteerShift {
 		result = prime * result + id;
 		result = prime * result + ((startDatetime == null) ? 0 : startDatetime.hashCode());
 		result = prime * result + ((volunteerJob == null) ? 0 : volunteerJob.hashCode());
+		result = prime * result + ((volunteers == null) ? 0 : volunteers.hashCode());
 		return result;
 	}
 	@Override
@@ -96,15 +111,22 @@ public class VolunteerShift {
 				return false;
 		} else if (!volunteerJob.equals(other.volunteerJob))
 			return false;
+		if (volunteers == null) {
+			if (other.volunteers != null)
+				return false;
+		} else if (!volunteers.equals(other.volunteers))
+			return false;
 		return true;
 	}
-	public VolunteerShift(int id, String volJob, Date startDatetime, String duration, String desiredNumVolunteers) {
+	public VolunteerShift(int id, String volunteerJob, Date startDatetime, String duration, String desiredNumVolunteers,
+			List<Volunteer> volunteers) {
 		super();
 		this.id = id;
-		this.volunteerJob = volJob;
+		this.volunteerJob = volunteerJob;
 		this.startDatetime = startDatetime;
 		this.duration = duration;
 		this.desiredNumVolunteers = desiredNumVolunteers;
+		this.volunteers = volunteers;
 	}
 	public VolunteerShift() {
 		super();
@@ -114,7 +136,7 @@ public class VolunteerShift {
 		StringBuilder builder = new StringBuilder();
 		builder.append("VolunteerShift [id=");
 		builder.append(id);
-		builder.append(", volJob=");
+		builder.append(", volunteerJob=");
 		builder.append(volunteerJob);
 		builder.append(", startDatetime=");
 		builder.append(startDatetime);
@@ -122,8 +144,10 @@ public class VolunteerShift {
 		builder.append(duration);
 		builder.append(", desiredNumVolunteers=");
 		builder.append(desiredNumVolunteers);
+		builder.append(", volunteers=");
+		builder.append(volunteers);
 		builder.append("]");
 		return builder.toString();
 	}
 	
-	}
+}

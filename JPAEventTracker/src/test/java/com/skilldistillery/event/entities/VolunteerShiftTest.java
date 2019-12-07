@@ -13,7 +13,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.eventtracker.entities.Volunteer;
 import com.skilldistillery.eventtracker.entities.VolunteerShift;
 
 class VolunteerShiftTest {
@@ -35,7 +34,7 @@ class VolunteerShiftTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		volunteerShift = em.find(VolunteerShift.class, 1);
+		volunteerShift = em.find(VolunteerShift.class, 2);
 	}
 
 	@AfterEach
@@ -45,9 +44,14 @@ class VolunteerShiftTest {
 	}
 
 	@Test
-	void test_volunteer_entity_mappings() {
+	void test_volunteerShift_entity_mappings() {
 		assertNotNull(volunteerShift);
-		assertEquals(null, volunteerShift.getDesiredNumVolunteers());
+		assertEquals(null, volunteerShift.getVolunteerJob());
+	}
+	@Test
+	void test_volunteerShift_to_Volunteer() {
+		assertNotNull(volunteerShift);
+		assertEquals("manual labor", volunteerShift.getVolunteers().get(0).getSkills());
 	}
 
 }
