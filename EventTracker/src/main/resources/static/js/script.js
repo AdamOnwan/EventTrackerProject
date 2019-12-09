@@ -18,6 +18,7 @@ function init() {
 	document.addVolunteerForm.create.addEventListener('click', function(event) {
 		event.preventDefault();
 		addNewVolunteer();
+		scrollOnClick();
 	});
 
 }
@@ -243,7 +244,7 @@ function updateVolunteerForm(volunteer) {
 	dataDiv.textContent = '';
 
 	let title = document.createElement('h1');
-	title.textContent = 'Volunteer Update: ' + volunteer.fname + volunteer.lname;
+	title.textContent = 'Volunteer Update: ' + volunteer.id;
 	dataDiv.appendChild(title);
 
 	let table = document.createElement('table')
@@ -340,3 +341,14 @@ function updateVolunteer(volunteer) {
 //	console.log(e.target.previousSibling);
 //	e.target.previousSibling.textContent = newContent;
 //}
+
+function scrollOnClick() {
+	var scrollToTop = window.setInterval(function() {
+		var pos = window.pageYOffset;
+		if (pos > 0) {
+			window.scrollTo(0, pos - 20); // how far to scroll on each step
+		} else {
+			window.clearInterval(scrollToTop);
+		}
+	}, 27); // scroll speed
+}
