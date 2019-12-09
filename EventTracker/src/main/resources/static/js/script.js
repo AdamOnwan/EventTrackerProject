@@ -39,6 +39,7 @@ function addNewVolunteer() {
 			dataDiv.textContent = 'Error Adding Volunteer';
 		}
 	};
+	
 	let form = document.addVolunteerForm;
 	var newVolunteerObject = {
 		fname : form.fname.value,
@@ -242,7 +243,7 @@ function updateVolunteerForm(volunteer) {
 	dataDiv.textContent = '';
 
 	let title = document.createElement('h1');
-	title.textContent = 'Volunteer Update' + volunteer.id;
+	title.textContent = 'Volunteer Update: ' + volunteer.fname + volunteer.lname;
 	dataDiv.appendChild(title);
 
 	let table = document.createElement('table')
@@ -266,7 +267,7 @@ function updateVolunteerForm(volunteer) {
 	inputPhone.type = 'text';
 	inputPhone.name = 'phone';
 	inputPhone.value = volunteer.phone;
-	updateForm.appendChild(inputLastName);
+	updateForm.appendChild(inputPhone);
 	let inputEmail = document.createElement('input');
 	inputEmail.type = 'text';
 	inputEmail.name = 'email';
@@ -332,29 +333,10 @@ function updateVolunteer(volunteer) {
 
 	var updateVolunteerJsonString = JSON.stringify(updateVolunteerObject);
 	xhr.send(updateVolunteerJsonString);
-
-	 tableData1.textContent = 'Volunteer First Name: ' + volunteer[i].fname
-	 tableData1.textContent = 'Volunteer Last Name: ' + volunteer[i].lname;
-	 tableData1.textContent = 'Volunteer Phone: ' + volunteer[i].phone;
-	 tableData2.textContent = 'Email: ' + volunteer[i].email;
-	 tableData3.textContent = 'Status: ' + volunteer[i].status;
-	 tableData4.textContent = 'Skills: ' + volunteer[i].skills;
-	 tableData5.textContent = 'Availability: ' + volunteer[i].availability;
-	 updateForm.appendChild(tableData1);
-	 updateForm.appendChild(tableData2);
-	 updateForm.appendChild(tableData3);
-	 updateForm.appendChild(tableData4);
-	 updateForm.appendChild(tableData5);
-	 updateForm.appendChild(tableData6);
-	 updateForm.appendChild(tableData7);
 }
 
-function editButtonFunction(e) {
-	let newContent = prompt('new value: ');
-	console.log(e.target.previousSibling);
-	e.target.previousSibling.textContent = newContent;
-}
-
-
-
-
+//function editButtonFunction(e) {
+//	let newContent = prompt('new value: ');
+//	console.log(e.target.previousSibling);
+//	e.target.previousSibling.textContent = newContent;
+//}
