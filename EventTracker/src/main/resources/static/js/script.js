@@ -209,7 +209,8 @@ function displayAllVolunteers(volunteer) {
 		}
 			
 	}
-	uniqueInfo1.textContent = 'Volunteers with Computer Usage skills :' + count + ' and ' +  count1 + ' comes in on weekends';
+	averageC = (volunteer.length / count);
+	uniqueInfo1.textContent = 'Volunteers with Computer Usage skills :' + count + ' and ' +  count1 + ' comes in on weekends' + ' AND the average of volunteers with computer usage is ' + averageC;
 	dataDiv.appendChild(uniqueInfo1);
 }
 
