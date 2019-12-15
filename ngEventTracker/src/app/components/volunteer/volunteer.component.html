@@ -1,0 +1,50 @@
+<p>volunteer works!</p>
+
+<!-- <div id="createNewVolunteer">
+  <form action="">
+    <input type="text" name="fname" [(ngModel)]="newVolunteer.fname" placeholder="first name"><br>
+    <input type="text" name="lname" [(ngModel)]="newVolunteer.lname" placeholder="last name"><br>
+    <input type="text" name="phone" [(ngModel)]="newVolunteer.phone" placeholder="phone"><br>
+    <input type="text" name="email" [(ngModel)]="newVolunteer.email" placeholder="email"><br>
+    <input type="text" name="status" [(ngModel)]="newVolunteer.status" placeholder="status"><br>
+    <input type="text" name="skills" [(ngModel)]="newVolunteer.skills" placeholder="skills"><br>
+    <input type="text" name="availability" [(ngModel)]="newVolunteer.availability" placeholder="availability"><br>
+    <input type="submit" value="Create New Volunteer" (click)="createNewVolunteer()">
+  </form>
+</div> -->
+
+<div id="volunteerList">
+    <!-- <span class="showHand" *ngFor="let skill of skills" (click)= "selectedSkills = skills">{{skill}} | </span> -->
+    <table>
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Skill</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let volunteer of volunteers" (click)="selectedVolunteer = volunteer;">
+            <td>{{volunteer.volunteerId}}</td>
+            <td>{{volunteer.fname | uppercase}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<!-- <div id="oneVolunteer" *ngIf="selectedVolunteer">
+<ul>
+  <li> {{ selectedVolunteer | json}}</li>
+  <li>Id: {{ selectedVolunteer.volunteerId }}</li>
+  <li>{{ selectedVolunteer.fname | uppercase}} {{selectedVolunteer.lname | uppercase}}</li>
+  <li>{{ selectedVolunteer.phone }}</li>
+  <li>{{ selectedVolunteer.email }}</li>
+  <li>{{ selectedVolunteer.status }}</li>
+  <li>{{ selectedVolunteer.skills }}</li>
+  <li>{{ selectedVolunteer.availability }}</li>
+</ul>
+Skills
+<ul>
+  <li *ngFor="let skills of selectedVolunteer">{{ volunteer.skills }}</li>
+</ul>
+<button (click)="selectedVolunteer = null;">Back</button>
+</div> -->
