@@ -1,18 +1,3 @@
-<p>volunteer works!</p>
-
-<!-- <div id="createNewVolunteer">
-  <form action="">
-    <input type="text" name="fname" [(ngModel)]="newVolunteer.fname" placeholder="first name"><br>
-    <input type="text" name="lname" [(ngModel)]="newVolunteer.lname" placeholder="last name"><br>
-    <input type="text" name="phone" [(ngModel)]="newVolunteer.phone" placeholder="phone"><br>
-    <input type="text" name="email" [(ngModel)]="newVolunteer.email" placeholder="email"><br>
-    <input type="text" name="status" [(ngModel)]="newVolunteer.status" placeholder="status"><br>
-    <input type="text" name="skills" [(ngModel)]="newVolunteer.skills" placeholder="skills"><br>
-    <input type="text" name="availability" [(ngModel)]="newVolunteer.availability" placeholder="availability"><br>
-    <input type="submit" value="Create New Volunteer" (click)="createNewVolunteer()">
-  </form>
-</div> -->
-
 <div id="volunteerList">
     <!-- <span class="showHand" *ngFor="let skill of skills" (click)= "selectedSkills = skills">{{skill}} | </span> -->
     <table>
@@ -27,11 +12,56 @@
           <tr *ngFor="let volunteer of volunteers" (click)="selectedVolunteer = volunteer;">
             <td>{{volunteer.volunteerId}}</td>
             <td>{{volunteer.fname | uppercase}}</td>
+            <td (click)="deleteVolunteer(volunteer.volunteerId)"> <button class="btn btn-danger">X</button> </td>
           </tr>
         </tbody>
       </table>
 </div>
-<!-- <div id="oneVolunteer" *ngIf="selectedVolunteer">
+<br>
+<div id="createNewVolunteer">
+  <form action="">
+    <input type="text" name="fname" [(ngModel)]="newVolunteer.fname" placeholder="first name"><br>
+    <input type="text" name="lname" [(ngModel)]="newVolunteer.lname" placeholder="last name"><br>
+    <input type="text" name="phone" [(ngModel)]="newVolunteer.phone" placeholder="phone"><br>
+    <input type="text" name="email" [(ngModel)]="newVolunteer.email" placeholder="email"><br>
+    <input type="text" name="status" [(ngModel)]="newVolunteer.status" placeholder="status"><br>
+    <input type="text" name="skills" [(ngModel)]="newVolunteer.skills" placeholder="skills"><br>
+    <input type="text" name="availability" [(ngModel)]="newVolunteer.availability" placeholder="availability"><br>
+    <input type="submit" value="Create New Volunteer" (click)="createNewVolunteer()">
+  </form>
+</div>
+<br>
+<div id="updatedVolunteer" *ngIf="updatedVolunteer">
+  <h2>{{updatedVolunteer.volunteerId}}</h2>
+  <form>
+    <label for="volunteerId">VolunteerID</label>
+    <input type="text" name="volunteerId" [(ngModel)]="updatedVolunteer.volunteerId"><br>
+
+    <label for="fname">First Name</label>
+    <input type="text" name="fname" [(ngModel)]="updatedVolunteer.fname"><br>
+
+    <label for="lname">Last Name</label>
+    <input type="text" name="lname" [(ngModel)]="updatedVolunteer.lname"><br>
+
+    <label for="phone">Phone</label>
+    <input type="text" name="phone" [(ngModel)]="updatedVolunteer.phone"><br>
+
+    <label for="email">Email</label>
+    <input type="text" name="email" [(ngModel)]="updatedVolunteer.email"><br>
+
+    <label for="status">Status</label>
+    <input type="text" name="status" [(ngModel)]="updatedVolunteer.status"><br>
+
+    <label for="skills">Skills</label>
+    <input type="text" name="skills" [(ngModel)]="updatedVolunteer.skills"><br>
+
+    <label for="availability">Availability</label>
+    <input type="text" name="availability" [(ngModel)]="updatedVolunteer.availability"><br>
+
+    <button class="btn btn-primary" (click)="updateVolunteer(updatedVolunteer)">Save</button>
+  </form>
+</div>
+<div id="oneVolunteer" *ngIf="selectedVolunteer" url"volunteers/volunteerId">
 <ul>
   <li> {{ selectedVolunteer | json}}</li>
   <li>Id: {{ selectedVolunteer.volunteerId }}</li>
@@ -42,9 +72,4 @@
   <li>{{ selectedVolunteer.skills }}</li>
   <li>{{ selectedVolunteer.availability }}</li>
 </ul>
-Skills
-<ul>
-  <li *ngFor="let skills of selectedVolunteer">{{ volunteer.skills }}</li>
-</ul>
-<button (click)="selectedVolunteer = null;">Back</button>
-</div> -->
+

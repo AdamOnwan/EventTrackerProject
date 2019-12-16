@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { VolunteerComponent } from './components/volunteer/volunteer.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     VolunteerService

@@ -16,6 +16,20 @@ private url = this.baseUrl + 'api/volunteers';
 
   constructor(private http: HttpClient) { }
 
+  create(volunteer: Volunteer) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-type': 'application/json'
+      })
+    };
+    return this.http.post<Volunteer>(this.url, volunteer, httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('VolunteerService.create(): Error creating volunteer');
+      })
+    );
+    }
 
 index() {
   const httpOptions = {
@@ -31,5 +45,31 @@ index() {
     })
   );
 }
+
+update(volunteer: Volunteer) {
+  console.log(volunteer);
+  console.log('*****************************')
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'X-Requested-With': 'XMLHttpRequest',
+      'Content-type': 'application/json'
+    })
+  };
+  return this.http.put(`${this.url}/${volunteer.volunteerId}`, volunteer, httpOptions)
+  .pipe(catchError((err: any) => {
+    console.error(err);
+    return throwError('VolunteerService.update(): Error updating volunteer');
+  })
+);
+}
+
+delete(volunteerId: number) {
+  return this.http.delete(`${this.url}/${volunteerId}`).pipe(
+    catchError((err: any) => {
+      console.error(err);
+      return throwError('VolunteerService.delete(): Error deleting volunteer');
+    })
+  );
+  }
 
 }
