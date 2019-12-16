@@ -46,18 +46,16 @@ export class VolunteerComponent implements OnInit {
     );
   }
 
-  updateVolunteer(volunteer: Volunteer) {
-    console.log(volunteer);
-    console.log(this.updatedVolunteer);
-    this.vSvc.update(volunteer).subscribe(
+  updateVolunteer() {
+    this.vSvc.update(this.selectedVolunteer.id, this.selectedVolunteer).subscribe(
     data => {
       this.getAllVolunteers();
-      volunteer = this.updatedVolunteer;
     },
     err => {
       console.error('VolunteerComponent.updateVolunteer()): error updating volunteer');
       console.error(err);
         });
+    this.getAllVolunteers();
     }
 
   deleteVolunteer(volunteerId: number) {
@@ -74,4 +72,10 @@ export class VolunteerComponent implements OnInit {
       console.error(bad);
     });
   }
+
+  numberOfSkills() {
+  }
+    getNumVolunteerSkills = function() {
+      return this.volunteers.length;
+    };
 }

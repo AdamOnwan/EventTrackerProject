@@ -46,17 +46,12 @@ private url = this.baseUrl + 'api/volunteers';
     );
   }
 
-update(volunteer: Volunteer) {
-  console.log(volunteer);
-  console.log('*****************************')
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'X-Requested-With': 'XMLHttpRequest',
-      'Content-type': 'application/json'
-    })
-  };
-  return this.http.put(this.url + '/' + volunteer.volunteerId, volunteer, httpOptions)
-  .pipe(catchError((err: any) => {
+update(id: number, data: Volunteer) {
+  console.log('*****************************');
+  const httpOptions = { };
+  return this.http.put(this.url + '/' + id, data, httpOptions)
+    .pipe
+    (catchError((err: any) => {
     console.error(err);
     return throwError('VolunteerService.update(): Error updating volunteer');
   })
