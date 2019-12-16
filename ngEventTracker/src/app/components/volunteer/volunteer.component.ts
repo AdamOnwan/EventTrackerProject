@@ -14,6 +14,7 @@ export class VolunteerComponent implements OnInit {
   newVolunteer: Volunteer = new Volunteer();
   selectedVolunteer: Volunteer = null;
   updatedVolunteer: Volunteer = null;
+  count: number = 0;
 
   constructor(private vSvc: VolunteerService, private router: Router) { }
 
@@ -73,9 +74,19 @@ export class VolunteerComponent implements OnInit {
     });
   }
 
-  numberOfSkills() {
+  numberOfTotalVolunteers() {
+    return this.volunteers.length;
   }
-    getNumVolunteerSkills = function() {
-      return this.volunteers.length;
+
+    getNumVolunteerSkills() {
+    // tslint:disable-next-line: prefer-for-of
+    for(let i = 0; i < this.volunteers.length; i++) {
+      if(this.volunteers[i].skills === 'Computer Usage') {
+        console.log('in get volunteers ');
+        console.log(this.count);
+        this.count++;
+      }
+    }
+    return this.count;
     };
 }

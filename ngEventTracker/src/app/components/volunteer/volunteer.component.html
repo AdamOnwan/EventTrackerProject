@@ -1,6 +1,8 @@
 <div id="volunteerList" *ngIf=!selectedVolunteer>
     <!-- <span class="showHand" *ngFor="let skill of skills" (click)= "selectedSkills = skills">{{skill}} | </span> -->
-    Number of Volunteers: {{getNumVolunteerSkills()}}
+    Number of Volunteers Total: {{numberOfTotalVolunteers()}}
+    <br>
+    Volunteers with Computer Usage skills: {{getNumVolunteerSkills()}}
     <table>
         <thead>
           <tr>
@@ -12,7 +14,7 @@
         <tbody>
           <tr *ngFor="let volunteer of volunteers" (click)="selectedVolunteer = volunteer;">
             <td>{{volunteer.id}}</td>
-            <td>{{volunteer.fname | uppercase}}</td>
+            <td>{{volunteer.fname | uppercase}} {{volunteer.lname | uppercase}}</td>
             <td>{{volunteer.skills}}</td>
             <td (click)="deleteVolunteer(volunteer.id)"> <button class="btn btn-danger">X</button> </td>
           </tr>
