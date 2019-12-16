@@ -1,5 +1,5 @@
 export class Volunteer {
-  volunteerId: number;
+  id: number;
   fname: string;
   lname: string;
   phone: string;
@@ -8,9 +8,9 @@ export class Volunteer {
   skills: string;
   availability: string;
 
-  constructor(volunteerId?: number, fname?: string, lname?: string, phone?: string,
+  constructor(id?: number, fname?: string, lname?: string, phone?: string,
               email?: string, status?: string, skills?: string, availability?: string) {
-    this.volunteerId = volunteerId;
+    this.id = id;
     this.fname = fname;
     this.lname = lname;
     this.phone = phone;

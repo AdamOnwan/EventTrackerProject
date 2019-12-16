@@ -64,12 +64,12 @@ export class VolunteerComponent implements OnInit {
       // this.todoSvc.delete(id);
       // this.todos = this.todoSvc.index();
       console.log(volunteerId);
-      console.log('***************************')
-  this.vSvc.delete(volunteerId).subscribe(
-    good => {
+      console.log('*************************')
+      this.vSvc.delete(volunteerId).subscribe(
+        good => {
       this.getAllVolunteers();
-    },
-    bad => {
+        },
+        bad => {
       console.error('VolunteerComponent.deleteVolunteer()): error deleting volunteer');
       console.error(bad);
     });

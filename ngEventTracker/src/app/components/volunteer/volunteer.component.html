@@ -29,47 +29,44 @@
     <input type="text" name="availability" [(ngModel)]="newVolunteer.availability" placeholder="availability"><br>
     <input type="submit" value="Create New Volunteer" (click)="createNewVolunteer()">
   </form>
-</div>
+
 <br>
-<div id="updatedVolunteer" *ngIf="updatedVolunteer">
-  <h2>{{updatedVolunteer.volunteerId}}</h2>
-  <form>
-    <label for="volunteerId">VolunteerID</label>
-    <input type="text" name="volunteerId" [(ngModel)]="updatedVolunteer.volunteerId"><br>
 
-    <label for="fname">First Name</label>
-    <input type="text" name="fname" [(ngModel)]="updatedVolunteer.fname"><br>
-
-    <label for="lname">Last Name</label>
-    <input type="text" name="lname" [(ngModel)]="updatedVolunteer.lname"><br>
-
-    <label for="phone">Phone</label>
-    <input type="text" name="phone" [(ngModel)]="updatedVolunteer.phone"><br>
-
-    <label for="email">Email</label>
-    <input type="text" name="email" [(ngModel)]="updatedVolunteer.email"><br>
-
-    <label for="status">Status</label>
-    <input type="text" name="status" [(ngModel)]="updatedVolunteer.status"><br>
-
-    <label for="skills">Skills</label>
-    <input type="text" name="skills" [(ngModel)]="updatedVolunteer.skills"><br>
-
-    <label for="availability">Availability</label>
-    <input type="text" name="availability" [(ngModel)]="updatedVolunteer.availability"><br>
-
-    <button class="btn btn-primary" (click)="updateVolunteer(updatedVolunteer)">Save</button>
-  </form>
-</div>
-<div id="oneVolunteer" *ngIf="selectedVolunteer" url"volunteers/volunteerId">
-<ul>
-  <li> {{ selectedVolunteer | json}}</li>
-  <li>Id: {{ selectedVolunteer.volunteerId }}</li>
+<div id="oneVolunteer" *ngIf="selectedVolunteer" url"volunteers/id">
+<ul click>
+  <li> {{ selectedVolunteer}}</li>
+  <li>Id: {{ selectedVolunteer.id }}</li>
   <li>{{ selectedVolunteer.fname | uppercase}} {{selectedVolunteer.lname | uppercase}}</li>
   <li>{{ selectedVolunteer.phone }}</li>
   <li>{{ selectedVolunteer.email }}</li>
   <li>{{ selectedVolunteer.status }}</li>
   <li>{{ selectedVolunteer.skills }}</li>
   <li>{{ selectedVolunteer.availability }}</li>
+  <li (click)="deleteVolunteer(selectedVolunteer.id)"> <button class="btn btn-danger">X</button> </li>
 </ul>
 
+<form>
+  <label for="fname">First Name</label>
+  <input type="text" name="fname" [(ngModel)]="selectedVolunteer.fname"><br>
+
+  <label for="lname">Last Name</label>
+  <input type="text" name="lname" [(ngModel)]="selectedVolunteer.lname"><br>
+
+  <label for="phone">Phone</label>
+  <input type="text" name="phone" [(ngModel)]="selectedVolunteer.phone"><br>
+
+  <label for="email">Email</label>
+  <input type="text" name="email" [(ngModel)]="selectedVolunteer.email"><br>
+
+  <label for="status">Status</label>
+  <input type="text" name="status" [(ngModel)]="selectedVolunteer.status"><br>
+
+  <label for="skills">Skills</label>
+  <input type="text" name="skills" [(ngModel)]="selectedVolunteer.skills"><br>
+
+  <label for="availability">Availability</label>
+  <input type="text" name="availability" [(ngModel)]="selectedVolunteer.availability"><br>
+
+  <button class="btn btn-primary" (click)="updateVolunteer()">Save</button>
+</form>
+</div>

@@ -31,20 +31,20 @@ private url = this.baseUrl + 'api/volunteers';
     );
     }
 
-index() {
-  const httpOptions = {
-    headers: new HttpHeaders({
+  index() {
+    const httpOptions = {
+      headers: new HttpHeaders({
       'X-Requested-With': 'XMLHttpRequest'
-    })
-  };
-  return this.http.get<Volunteer[]>(this.url, httpOptions)
-  .pipe(
-    catchError((err: any) => {
-      console.log(err);
-      return throwError('KABOOM');
-    })
-  );
-}
+      })
+    };
+    return this.http.get<Volunteer[]>(this.url, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('KABOOM');
+      })
+    );
+  }
 
 update(volunteer: Volunteer) {
   console.log(volunteer);
@@ -55,7 +55,7 @@ update(volunteer: Volunteer) {
       'Content-type': 'application/json'
     })
   };
-  return this.http.put(`${this.url}/${volunteer.volunteerId}`, volunteer, httpOptions)
+  return this.http.put(this.url + '/' + volunteer.volunteerId, volunteer, httpOptions)
   .pipe(catchError((err: any) => {
     console.error(err);
     return throwError('VolunteerService.update(): Error updating volunteer');
